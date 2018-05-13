@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context=".activity.MainActivity">
+
+    <Button
+        android:id="@+id/btn_setApp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="设置定时任务APP列表" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/et_hour"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:inputType="number"
+            android:singleLine="true"
+            android:textSize="24sp"
+            android:hint="小时"
+
+            android:text="12" />
+        <TextView
+            android:text=":"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:textSize="28sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/et_min"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:inputType="number"
+            android:singleLine="true"
+            android:textSize="24sp"
+            android:hint="分钟"
+
+            android:text="00" />
+
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/btn_setTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="设置定时时间" />
+
+    <EditText
+        android:id="@+id/et_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="请输入启动APP数量"
+        android:inputType="number"
+        android:singleLine="true"
+        android:text="3" />
+
+    <Button
+        android:id="@+id/btn_setNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="设置启动APP数量" />
+
+    <TextView
+        android:id="@+id/tv_detail"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#666"
+        android:maxLines="100"
+        android:padding="8dp"
+        android:scrollbars="vertical"
+        android:textColor="#0f0" />
+
+    <Button
+        android:id="@+id/btn_start_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="开始任务" />
+
+    <Button
+        android:id="@+id/btn_stop_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="停止任务" />
+
+</LinearLayout>

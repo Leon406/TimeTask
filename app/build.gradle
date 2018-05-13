@@ -1,0 +1,84 @@
+apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
+
+def jcoreVer = '1.1.9'
+def jpushVer = '3.1.1'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "ll.leon.me.timetask"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi-v7a','armeabi','x86' //, 'x86_64', 'arm64-v8a'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "31bff9a0bfd4a4e2fb4342ce", // 极光key
+                JPUSH_CHANNEL: "default", //暂时填写默认值即可.
+        ]
+
+    }
+    signingConfigs {
+        Sign {
+            keyAlias "love_u"
+            keyPassword "panda931020"
+            storeFile file('../keystore.jks')
+            storePassword "panda931020"
+        }
+    }
+
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.Sign
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            signingConfig signingConfigs.Sign
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+//    configurations.all {
+//        ResolutionStrategy.eachDependency { DependencyResolveDetails details ->
+//            def requested = details.requested
+//            if (requested.group == 'com.android.support') {
+//                if (!requested.name.startsWith("multidex")) {
+//                    details.useVersion '26.0.2'
+//                }
+//            }
+//        }
+//    }
+    lintOptions {
+        abortOnError false
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
+    implementation 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0'
+    testImplementation 'junit:junit:4.12'
+    implementation 'me.leon406:devsuit:1.1.0'
+    implementation 'me.leon406:rxbus:1.2.2'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.android.support:design:27.1.1'
+    implementation "cn.jiguang.sdk:jcore:$jcoreVer"
+    implementation "cn.jiguang.sdk:jpush:$jpushVer"
+
+}
