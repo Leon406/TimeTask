@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
-import ll.leon.me.timetask.App;
 import ll.leon.me.timetask.BuildConfig;
 import ll.leon.me.timetask.Constant;
 import ll.leon.me.timetask.service.TaskService;

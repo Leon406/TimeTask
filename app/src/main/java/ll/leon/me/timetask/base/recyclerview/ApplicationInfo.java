@@ -1,12 +1,9 @@
 package ll.leon.me.timetask.base.recyclerview;
 
-import android.graphics.drawable.Drawable;
-
 import java.util.Objects;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
-import ll.leon.me.timetask.realm.RealmDao;
 import me.leon.devsuit.android.AppUtils;
 
 /**

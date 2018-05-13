@@ -4,21 +4,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.text.format.Formatter;
 import android.util.Log;
 
-
 import org.json.JSONObject;
-
-import java.io.File;
 
 import cn.jpush.android.api.JPushInterface;
 import ll.leon.me.timetask.activity.MainActivity;
 import ll.leon.me.timetask.service.TaskService;
-import me.leon.devsuit.android.AppUtils;
-import me.leon.devsuit.android.LogUtils;
-import me.leon.devsuit.android.SPUtils;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;

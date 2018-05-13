@@ -13,14 +13,12 @@ import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.IllegalFormatCodePointException;
 import java.util.List;
 
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import ll.leon.me.timetask.App;
 import ll.leon.me.timetask.AppExecuteUtil;
-import ll.leon.me.timetask.BuildConfig;
 import ll.leon.me.timetask.Constant;
 import ll.leon.me.timetask.base.recyclerview.ApplicationInfo;
 import ll.leon.me.timetask.realm.RealmDao;

@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.List;
@@ -21,9 +20,9 @@ import io.reactivex.Flowable;
 import ll.leon.me.timetask.App;
 import ll.leon.me.timetask.Constant;
 import ll.leon.me.timetask.R;
-import ll.leon.me.timetask.service.TaskService;
 import ll.leon.me.timetask.base.recyclerview.ApplicationInfo;
 import ll.leon.me.timetask.realm.RealmDao;
+import ll.leon.me.timetask.service.TaskService;
 import ll.leon.me.timetask.util.AutoStarSettting;
 import me.leon.devsuit.android.AppUtils;
 import me.leon.devsuit.android.KeyboardUtils;
