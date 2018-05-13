@@ -50,7 +50,7 @@
             <intent-filter android:priority="1000">
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.media.AUDIO_BECOMING_NOISY" />
-                <action android:name="android.intent.action.TEST_GKP" />
+                <action android:name="android.intent.action.CUSTOME_BOOT_COMPLETED" />
                 <!--<category android:name="android.intent.category.HOME" />-->
             </intent-filter>
             <intent-filter>

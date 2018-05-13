@@ -27,7 +27,7 @@ public class App extends Application {
     public static Realm realm;
     public static List<AppUtils.AppInfo> appsInfo;
     public static boolean isStop;
-    public static long INTERVAL = BuildConfig.DEBUG ? 15 * 1000 : 5 * 60 * 1000;
+    public static long INTERVAL = BuildConfig.DEBUG ? 5 * 60 * 1000 : 5 * 60 * 1000;
 
     @Override
     public void onCreate() {

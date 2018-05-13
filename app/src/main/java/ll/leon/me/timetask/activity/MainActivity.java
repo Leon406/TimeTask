@@ -24,6 +24,7 @@ import ll.leon.me.timetask.R;
 import ll.leon.me.timetask.service.TaskService;
 import ll.leon.me.timetask.base.recyclerview.ApplicationInfo;
 import ll.leon.me.timetask.realm.RealmDao;
+import ll.leon.me.timetask.util.AutoStarSettting;
 import me.leon.devsuit.android.AppUtils;
 import me.leon.devsuit.android.KeyboardUtils;
 import me.leon.devsuit.android.SPUtils;
@@ -98,6 +99,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnsetApp = (Button) findViewById(R.id.btn_setApp);
         tvDetail = (TextView) findViewById(R.id.tv_detail);
 
+        findViewById(R.id.btn_auto_start).setOnClickListener(AutoStarSettting::jumpStartInterface);
+
         btnStoptask.setOnClickListener(this);
         btnStarttask.setOnClickListener(this);
         btnSetNum.setOnClickListener(this);
@@ -126,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private int getTimeInt(String aSting, boolean isHour) {
         if (TextUtils.isEmpty(aSting)) {
-            return isHour ? 12 :0;
+            return isHour ? 12 : 0;
         }
         int aInt = Integer.parseInt(aSting);
         return isHour ? aInt > 23 ? 12 : aInt
