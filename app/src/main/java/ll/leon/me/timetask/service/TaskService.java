@@ -17,6 +17,7 @@ import java.util.IllegalFormatCodePointException;
 import java.util.List;
 
 import io.reactivex.Flowable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import ll.leon.me.timetask.App;
 import ll.leon.me.timetask.AppExecuteUtil;
 import ll.leon.me.timetask.BuildConfig;
@@ -96,9 +97,8 @@ public class TaskService extends Service {
                 if (hour == date.getHours() && deltaMilli < App.INTERVAL * 0.6) {
                     Log.d("TaskService", "============TimeMatch========= ");
                     Log.d("TaskService", "executed task ");
-                    AppExecuteUtil.exeCmd(applicationInfos, cout);
-
                     stopApp(applicationInfos);
+                    AppExecuteUtil.exeCmd(applicationInfos, cout);
 
                 } else {
                     Log.d("TaskService", "thresHold : " + App.INTERVAL * 0.6
@@ -113,6 +113,7 @@ public class TaskService extends Service {
     private void stopApp(List<ApplicationInfo> applicationInfos) {
         ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         Flowable.fromIterable(applicationInfos)
+                .subscribeOn(AndroidSchedulers.mainThread())
                 .subscribe(applicationInfo -> killPackage(applicationInfo.packageName, am));
     }
 
@@ -127,7 +128,7 @@ public class TaskService extends Service {
     private void killPackage(String pkg, ActivityManager activityManager) {
         try {
             activityManager.killBackgroundProcesses(pkg);
-
+            Log.d(TAG, "kill: " + pkg + " success!");
         } catch (Exception e) {
             e.printStackTrace();
             Log.d(TAG, "kill: " + pkg + "error!");
