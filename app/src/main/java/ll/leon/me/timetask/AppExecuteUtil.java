@@ -36,6 +36,7 @@ public class AppExecuteUtil {
 
     private static void launchApp(String s) {
 
+
         if (BuildConfig.DEBUG) Log.d("TaskUtil", "launch App" + s);
         AppUtils.launchApp(s);
 

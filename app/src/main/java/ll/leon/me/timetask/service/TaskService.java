@@ -1,5 +1,6 @@
 package ll.leon.me.timetask.service;
 
+import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -15,6 +16,7 @@ import java.util.Date;
 import java.util.IllegalFormatCodePointException;
 import java.util.List;
 
+import io.reactivex.Flowable;
 import ll.leon.me.timetask.App;
 import ll.leon.me.timetask.AppExecuteUtil;
 import ll.leon.me.timetask.BuildConfig;
@@ -47,7 +49,7 @@ public class TaskService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         boolean aBoolean = SPUtils.getInstance().getBoolean(Constant.START, false);
-        Log.d(TAG, "============onStart========= " +aBoolean);
+        Log.d(TAG, "============onStart========= " + aBoolean);
         if (screenListener == null) {
             screenListener = new ScreenListener(this);
         }
@@ -95,6 +97,9 @@ public class TaskService extends Service {
                     Log.d("TaskService", "============TimeMatch========= ");
                     Log.d("TaskService", "executed task ");
                     AppExecuteUtil.exeCmd(applicationInfos, cout);
+
+                    stopApp(applicationInfos);
+
                 } else {
                     Log.d("TaskService", "thresHold : " + App.INTERVAL * 0.6
                             + "\tdeltaMin : " + deltaMilli
@@ -105,10 +110,27 @@ public class TaskService extends Service {
         }).start();
     }
 
+    private void stopApp(List<ApplicationInfo> applicationInfos) {
+        ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        Flowable.fromIterable(applicationInfos)
+                .subscribe(applicationInfo -> killPackage(applicationInfo.packageName, am));
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         screenListener.unregister();
         Log.d(TAG, "============onDestroy========= ");
+    }
+
+
+    private void killPackage(String pkg, ActivityManager activityManager) {
+        try {
+            activityManager.killBackgroundProcesses(pkg);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d(TAG, "kill: " + pkg + "error!");
+        }
     }
 }
